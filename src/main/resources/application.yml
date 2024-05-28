@@ -15,3 +15,14 @@ spring:
     console:
       enabled: true
       path: /h2-console
+      
+  thymeleaf:
+    check-template-location: true
+    prefix: classpath:/templates/
+    suffix: .html
+    cache: false
+  mvc:
+    static-path-pattern: /static/**
+
+infra:
+  discord: https://discord.com/api/webhooks/1244299981607931935/z88NQ05k5mK73SHj_Zx4GsEzuR718tHMezVOIVgYEagTluaGCW0QswGTWwSj1h-82r5r

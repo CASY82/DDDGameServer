@@ -34,15 +34,15 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override	
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         try {
-//        	UserEntity userData = this.repository.findByUsername(username);
+        	UserEntity userData = this.repository.findByUserName(username);
         	
-//        	Assert.notNull(userData, "계정이 없습니다.");
+        	Assert.notNull(userData, "계정이 없습니다.");
         	
             List<GrantedAuthority> authList = new ArrayList<>();
             authList.add(new SimpleGrantedAuthority("ADMIN"));
             
-//            return new User(userData.getUsername(), userData.getPassword(), true, true, true, true, authList);
-            return new User("test", "1234", true, true, true, true, authList);
+            return new User(userData.getUserName(), userData.getPassword(), true, true, true, true, authList);
+//            return new User("test", "1234", true, true, true, true, authList);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

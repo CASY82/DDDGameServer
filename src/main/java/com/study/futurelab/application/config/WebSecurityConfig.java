@@ -10,7 +10,6 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -43,14 +42,13 @@ public class WebSecurityConfig {
                     .requestMatchers(
                     		"/",
                     		"/swagger-ui/**",
-                    		"/h2-console/**"
+                    		"/h2-console/**",
+                    		"/ws/**",
+                    		"/chat"
                     		)
                     		.permitAll()
                             .anyRequest().authenticated()
             )
-        	.sessionManagement(session ->
-        		session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-        	)
         	.authenticationProvider(this.authenticationProvider())
             .exceptionHandling(exception ->  
                     exception.authenticationEntryPoint(
@@ -58,9 +56,7 @@ public class WebSecurityConfig {
                             -> response.sendError(
                                 HttpServletResponse.SC_UNAUTHORIZED,
                                 authException.getLocalizedMessage()
-                              )))  
-            .csrf(csrf ->  
-                    csrf.disable());  
+                              )));  
   
         return http.build();  
     }  
@@ -90,7 +86,12 @@ public class WebSecurityConfig {
         return (web) -> web.ignoring().requestMatchers(  
                 "/swagger-ui/**",
                 "/v3/api-docs/**",
-                "/h2-console/**"
+                "/h2-console/**",
+                "/js/**",
+                "/css/**",
+                "/img/**",
+                "/lib/**",
+                "/scss/**"
         		);  
     }
   
