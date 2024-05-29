@@ -28,24 +28,24 @@ public class UserEntity {
 	@Column(name = "nickname")
     private String nickName;
 	
-	@Column(name = "hp")
+	@Column(name = "hp", columnDefinition = "INTEGER DEFAULT 100")
 	private Integer hp;
 	
-	@Column(name = "mp")
+	@Column(name = "mp", columnDefinition = "INTEGER DEFAULT 100")
 	private Integer mp;
 	
-	@Column(name = "attack_rate")
+	@Column(name = "attack_rate", columnDefinition = "INTEGER DEFAULT 10")
 	private Integer attackRate;
 	
-	@Column(name = "defence_rate")
+	@Column(name = "defence_rate", columnDefinition = "INTEGER DEFAULT 10")
 	private Integer defenceRate;
 	
-	@Column(name = "exp")
+	@Column(name = "exp", columnDefinition = "INTEGER DEFAULT 0")
 	private Integer exp;
 
-	@Column(name = "created_at")
+	@Column(name = "created_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	private Timestamp createdAt;
 	
-	@Column(name = "updated_at")
+	@Column(name = "updated_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	private Timestamp updatedAt;
 }
