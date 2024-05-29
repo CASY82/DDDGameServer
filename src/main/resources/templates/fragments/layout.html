@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!-- layout 관련 namespace 추가 선언 -->
+<lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <meta charset="utf-8">
+        <title> Choi의 게임 서버 </title>
+        <!-- config.html -->
+        <th:block th:replace="~{fragments/config::configFragment}" ></th:block>
+    </head>
+    
+    <body>
+	<div class="container-fluid position-relative d-flex p-0">
+		
+    <!-- header.html -->
+    <header th:replace="~{fragments/header::headerFragment}"></header>
+    
+    <!-- sidebar.html -->
+	<div th:replace="~{fragments/sidebar::sideFragment}"></div>
+
+	<div class="content">
+	
+	<!-- nav.html -->
+	<div th:replace="~{fragments/nav::navFragment}"></div>
+	
+    <div layout:fragment="content"></div>
+
+	<!-- footer.html -->
+    <footer th:replace="~{fragments/footer::footerFragment}"></footer>
+    
+    </div>
+    
+    
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    
+    </div>
+    
+    <!-- JavaScript Libraries -->
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="lib/chart/chart.min.js"></script>
+	<script src="lib/easing/easing.min.js"></script>
+	<script src="lib/waypoints/waypoints.min.js"></script>
+	<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+	<script src="lib/tempusdominus/js/moment.min.js"></script>
+	<script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+	<script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+	
+	<!-- Template Javascript -->
+	<script src="js/main.js"></script>
+	
+    </body>
+</html>

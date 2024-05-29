@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -37,10 +38,12 @@ public class WebSecurityConfig {
     	http.cors(cors ->
     			cors.disable());
     	
-        http.authorizeHttpRequests(auth ->  
+        http.csrf(AbstractHttpConfigurer::disable)
+        	.authorizeHttpRequests(auth ->  
                     auth.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                     .requestMatchers(
                     		"/",
+                    		"/login",
                     		"/swagger-ui/**",
                     		"/h2-console/**",
                     		"/ws/**",
@@ -48,7 +51,13 @@ public class WebSecurityConfig {
                     		)
                     		.permitAll()
                             .anyRequest().authenticated()
+            ).formLogin(form -> form
+                    .loginPage("/login")
+                    .defaultSuccessUrl("/", true)
+                    .permitAll()
             )
+            .logout(logout -> logout
+                    .permitAll())
         	.authenticationProvider(this.authenticationProvider())
             .exceptionHandling(exception ->  
                     exception.authenticationEntryPoint(
@@ -83,7 +92,7 @@ public class WebSecurityConfig {
 
     @Bean  
     public WebSecurityCustomizer webSecurityCustomizer() {  
-        return (web) -> web.ignoring().requestMatchers(  
+        return (web) -> web.ignoring().requestMatchers(
                 "/swagger-ui/**",
                 "/v3/api-docs/**",
                 "/h2-console/**",
