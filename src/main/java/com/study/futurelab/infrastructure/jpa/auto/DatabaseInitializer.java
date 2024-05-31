@@ -19,6 +19,8 @@ public class DatabaseInitializer implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         jdbcTemplate.execute("INSERT INTO game_user (username, password, nickname, hp, mp, attack_rate, defence_rate, exp)"
-        		+ "VALUES ('player123', 'pass123', 'hero123', 100, 50, 10, 5, 0);");
+        		+ "VALUES ('player1', '1234', 'hero1', 100, 50, 10, 5, 0);");
+        jdbcTemplate.execute("INSERT INTO game_user (username, password, nickname, hp, mp, attack_rate, defence_rate, exp)"
+        		+ "VALUES ('player2', '1234', 'hero2', 200, 100, 20, 10, 0);");
     }
 }
