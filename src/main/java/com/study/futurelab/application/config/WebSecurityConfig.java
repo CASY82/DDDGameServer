@@ -42,8 +42,6 @@ public class WebSecurityConfig {
         	.authorizeHttpRequests(auth ->  
                     auth.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                     .requestMatchers(
-                    		"/",
-                    		"/login",
                     		"/swagger-ui/**",
                     		"/h2-console/**",
                     		"/ws/**",
@@ -52,12 +50,17 @@ public class WebSecurityConfig {
                     		.permitAll()
                             .anyRequest().authenticated()
             ).formLogin(form -> form
-                    .loginPage("/login")
+                    .loginPage("/login_page")
+                    .loginProcessingUrl("/login")
+                    .usernameParameter("id")
+                    .passwordParameter("password")
                     .defaultSuccessUrl("/", true)
                     .permitAll()
             )
             .logout(logout -> logout
-                    .permitAll())
+                    .permitAll()
+                    .invalidateHttpSession(true)
+                    .deleteCookies("JSESSIONID"))
         	.authenticationProvider(this.authenticationProvider())
             .exceptionHandling(exception ->  
                     exception.authenticationEntryPoint(

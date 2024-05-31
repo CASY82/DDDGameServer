@@ -17,7 +17,7 @@ public class ViewController {
 		return "chat";
 	}
 	
-	@GetMapping("/login")
+	@GetMapping("/login_page")
 	public String getLoginPage(Model model) {
 		return "signin";
 	}

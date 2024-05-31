@@ -29,9 +29,9 @@ public class ErrorLogDiscordAspect {
 	@Value("${infra.discord}")
 	private String webHookUrl;
 	
-	@Pointcut("execution(* com.study.codepour.application.security..*.*(..))"
-			+ " || execution(* com.study.codepour.presentation..*.*(..))"
-			+ " || execution(* com.study.codepour.domain..*.*(..))")
+	@Pointcut("execution(* com.study.futurelab.application..*.*(..))"
+			+ " || execution(* com.study.futurelab.presentation..*.*(..))"
+			+ " || execution(* com.study.futurelab.domain..*.*(..))")
 	public void packagePointcut() {
 		
 	}
