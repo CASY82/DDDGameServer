@@ -25,9 +25,9 @@ public class ItemEntity {
 	@Column(name = "effect")
 	private String effect;
 	
-	@Column(name = "created_at")
+	@Column(name = "created_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	private Timestamp createdAt;
 	
-	@Column(name = "updated_at")
+	@Column(name = "updated_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	private Timestamp updatedAt;
 }

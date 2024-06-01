@@ -59,6 +59,7 @@ public class WebSecurityConfig {
             )
             .logout(logout -> logout
                     .permitAll()
+                    .logoutSuccessUrl("/login_page") 
                     .invalidateHttpSession(true)
                     .deleteCookies("JSESSIONID"))
         	.authenticationProvider(this.authenticationProvider())
@@ -66,7 +67,10 @@ public class WebSecurityConfig {
                     exception.authenticationEntryPoint(
                     		(request, response, authException)
                             -> response.sendRedirect("/login_page")));  
-  
+//        -> response.sendError(
+//                HttpServletResponse.SC_UNAUTHORIZED,
+//                authException.getLocalizedMessage()
+//              )));  
         return http.build();  
     }  
     

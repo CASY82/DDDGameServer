@@ -34,9 +34,9 @@ public class MonsterEntity {
 	@Column(name = "defence_rate")
 	private Integer defenceRate;
 	
-	@Column(name = "created_at")
+	@Column(name = "created_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	private Timestamp createdAt;
 	
-	@Column(name = "updated_at")
+	@Column(name = "updated_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	private Timestamp updatedAt;
 }
