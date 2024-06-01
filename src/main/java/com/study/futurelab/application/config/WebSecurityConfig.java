@@ -65,10 +65,7 @@ public class WebSecurityConfig {
             .exceptionHandling(exception ->  
                     exception.authenticationEntryPoint(
                     		(request, response, authException)
-                            -> response.sendError(
-                                HttpServletResponse.SC_UNAUTHORIZED,
-                                authException.getLocalizedMessage()
-                              )));  
+                            -> response.sendRedirect("/login_page")));  
   
         return http.build();  
     }  
